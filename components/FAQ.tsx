@@ -79,21 +79,28 @@ export default function FAQ() {
 
                 <div className="flex flex-col gap-3">
                     {faqs.map((f, i) => (
-                        <div key={i} className="bg-white v-rounded-3xl v-overflow-hidden shadow-sm">
+                        <div key={i} className="faq-item">
                             <button
                                 onClick={() => setOpen(open === i ? null : i)}
                                 className="w-full flex items-center justify-between faq-button"
-                                style={{ border: 'none', background: 'none', cursor: 'pointer', textAlign: 'left' }}
+                                style={{ border: 'none', background: 'none', cursor: 'pointer', textAlign: 'left', color: 'var(--primary)' }}
                             >
                                 <span className="serif" style={{ fontSize: '0.9rem', fontWeight: 500 }}>{f.q}</span>
                                 {open === i ? <Minus size={14} opacity={0.3} /> : <Plus size={14} opacity={0.3} />}
                             </button>
                             {open === i && (
-                                <div className="serif faq-answer" style={{ fontSize: '0.85rem', opacity: 0.5, lineHeight: 2 }}>
+                                <div className="serif faq-answer" style={{ fontSize: '0.85rem', opacity: 0.5, lineHeight: 2, color: 'var(--primary)' }}>
                                     {f.a}
                                 </div>
                             )}
                             <style jsx>{`
+                                .faq-item {
+                                    background: #fff;
+                                    border-radius: 24px;
+                                    overflow: hidden;
+                                    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+                                    margin-bottom: 0.75rem;
+                                }
                                 .faq-button {
                                     padding: 24px 30px;
                                 }
