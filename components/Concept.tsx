@@ -26,7 +26,7 @@ export default function Concept() {
                     <span className="v-title-tag">Concept</span>
                     <h2 className="v-section-title serif mb-0">
                         <span className="inline-block">原風景とともに刻む、</span>
-                        <br className="hidden md:block" />
+                        <br />
                         <span className="inline-block">ふたりの物語。</span>
                     </h2>
                     <div className="serif" style={{ fontSize: '0.95rem', lineHeight: 2.2, opacity: 0.7 }}>
