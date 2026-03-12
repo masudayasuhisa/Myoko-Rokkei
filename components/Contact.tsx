@@ -159,7 +159,23 @@ export default function Contact() {
                         />
                     </div>
 
-                    <div style={{ textAlign: "center", marginTop: "0.8rem" }}>
+                    <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
+                        <p style={{ 
+                            fontSize: "11px", 
+                            fontFamily: "var(--font-serif)", 
+                            opacity: 0.4, 
+                            marginBottom: "1.5rem",
+                            lineHeight: 1.6 
+                        }}>
+                            送信することで、当サイトのプライバシーポリシーに<br className="md:hidden" />
+                            同意したものとみなされます。
+                        </p>
+                        
+                        {/* Honeypot Field */}
+                        <div style={{ display: 'none' }} aria-hidden="true">
+                            <input type="text" name="hp_field" tabIndex={-1} autoComplete="off" />
+                        </div>
+
                         <button
                             disabled={sub}
                             style={{

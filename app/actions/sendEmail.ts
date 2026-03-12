@@ -13,6 +13,13 @@ export async function sendEmail(formData: FormData) {
     const name = formData.get('name') as string
     const email = formData.get('email') as string
     const message = formData.get('message') as string
+    const hpField = formData.get('hp_field') as string
+
+    // Honeypot check: If this hidden field is filled, it's a bot
+    if (hpField) {
+        console.warn("Spam detected via honeypot field.")
+        return { success: true } // Silently reject to avoid giving feedback to the bot
+    }
 
     if (!name || !email || !message) {
         return { error: "Missing fields" }
