@@ -19,18 +19,49 @@ export async function sendEmail(formData: FormData) {
     }
 
     try {
-        const { data, error } = await resend.emails.send({
+        // 1. Admin Notification
+        const adminEmail = await resend.emails.send({
             from: 'Myoko Rokkei <onboarding@resend.dev>',
             to: ['info@myoko-rokkei.jp'], 
-            subject: `Contact from ${name}`,
+            subject: `【お問い合わせ】${name}様より`,
             reply_to: email,
-            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+            text: `お名前: ${name}\nメールアドレス: ${email}\n\n内容:\n${message}`,
         })
 
-        if (error) {
-            console.error("Resend API Error:", error)
-            return { error: error.message || "Failed to send email" }
+        if (adminEmail.error) {
+            console.error("Admin Email Error:", adminEmail.error)
+            return { error: adminEmail.error.message }
         }
+
+        // 2. Auto Response to User
+        // 注意: Resendのドメイン認証が完了するまでは、宛先が自分以外だとエラーになる可能性があります
+        const userEmail = await resend.emails.send({
+            from: '妙高麓景 <onboarding@resend.dev>',
+            to: [email],
+            subject: '【妙高麓景】お問い合わせありがとうございます',
+            text: `${name} 様
+
+この度は、ウェディングフォト「妙高麓景」へお問い合わせいただき、誠にありがとうございます。
+
+お客様からのお問い合わせ内容を、以下の通り受け付けいたしました。
+内容を確認のうえ、担当者より改めてご連絡させていただきます。
+
+今しばらくお待ちいただけますと幸いです。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+■ お問い合わせ内容
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+お名前：${name} 様
+メールアドレス：${email}
+
+内容：
+${message}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+妙高麓景｜Myoko Rokkei
+https://myoko-rokkei.jp/
+`,
+        })
 
         return { success: true }
     } catch (err) {
