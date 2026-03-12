@@ -90,7 +90,7 @@ export default function Footer() {
                             <br />
                             妙高の原風景とともに、
                             <br />
-                            お二人の歩みを記録します。
+                            おふたりの歩みを記録します。
                         </p>
                         <a
                             href="https://www.instagram.com/myokorokkei/"

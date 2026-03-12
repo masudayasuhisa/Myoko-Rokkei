@@ -16,7 +16,7 @@ export default function Flow() {
         { t: "Inquiry", j: "お問い合わせ", d: "WebフォームまたはInstagramのDMからお気軽にご連絡ください。担当者より折り返しご連絡いたします。", icon: Mail },
         { t: "Consultation", j: "お打ち合わせ", d: "Zoomなどオンラインでも対応。プランの詳細や、帰省スケジュールに合わせた撮影日の調整を行います。", icon: MessageCircle },
         { t: "Fitting", j: "お衣装選び", d: "撮影前にドレス・タキシードなどの衣装をお選びいただきます。お気に入りの一着が見つかるよう、スタッフが丁寧にご案内します。", icon: Ruler },
-        { t: "Shooting", j: "撮影当日", d: "妙高の雄大な自然を舞台に、リラックスした雰囲気で。お二人の自然な表情を引き出します。", icon: Camera },
+        { t: "Shooting", j: "撮影当日", d: "妙高の雄大な自然を舞台に、リラックスした雰囲気で。おふたりの自然な表情を引き出します。", icon: Camera },
         { t: "Delivery", j: "納品", d: "丁寧にレタッチしたデータ（1ヶ月以内）をダウンロード形式でお届けします。", icon: ImageIcon }
     ];
 
@@ -106,7 +106,7 @@ export default function Flow() {
 
                     <div className="text-center" style={{ marginTop: '28px' }}>
                         <p className="serif italic opacity-40" style={{ fontSize: '0.9rem' }}>
-                            <span className="inline-block">お二人の想いに寄り添いながら、</span><br className="inline md:hidden" />
+                            <span className="inline-block">おふたりの想いに寄り添いながら、</span><br className="inline md:hidden" />
                             <span className="inline-block">準備からお届けまで、</span>
                             <span className="inline-block">丁寧に進めてまいります。</span>
                         </p>
