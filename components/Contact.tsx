@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Instagram } from "lucide-react";
+import Script from "next/script";
 import { sendEmail } from "@/app/actions/sendEmail";
 
 const inputStyle: React.CSSProperties = {
@@ -32,6 +33,7 @@ export default function Contact() {
 
     return (
         <section id="contact" style={{ padding: "100px 0", background: "#fff" }}>
+            <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
             <div className="container" style={{ maxWidth: "640px" }}>
                 <div style={{ textAlign: "center", marginBottom: "3rem" }}>
                     <img src="/images/illus-contact.png" alt="" aria-hidden="true" style={{ width: "60px", display: "block", margin: "0 auto 0.8rem", mixBlendMode: "multiply" }} />
@@ -174,6 +176,21 @@ export default function Contact() {
                         {/* Honeypot Field */}
                         <div style={{ display: 'none' }} aria-hidden="true">
                             <input type="text" name="hp_field" tabIndex={-1} autoComplete="off" />
+                        </div>
+
+                        {/* Cloudflare Turnstile */}
+                        <div style={{ 
+                            marginBottom: "1.5rem", 
+                            display: "flex", 
+                            justifyContent: "center",
+                            minHeight: "65px" 
+                        }}>
+                            <div 
+                                className="cf-turnstile" 
+                                data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "your-site-key"}
+                                data-theme="light"
+                                data-size="normal"
+                            ></div>
                         </div>
 
                         <button
