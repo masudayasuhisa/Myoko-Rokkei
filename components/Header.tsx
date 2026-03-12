@@ -117,7 +117,7 @@ export default function Header() {
                         ))}
 
                         <a
-                            href="https://instagram.com"
+                            href="https://www.instagram.com/myokorokkei/"
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{
@@ -301,7 +301,7 @@ export default function Header() {
                         ))}
 
                         <motion.a
-                            href="https://instagram.com"
+                            href="https://www.instagram.com/myokorokkei/"
                             target="_blank"
                             rel="noopener noreferrer"
                             initial={{ opacity: 0, y: 20 }}

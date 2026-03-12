@@ -80,7 +80,7 @@ export default function Contact() {
                         </p>
                     </div>
                     <a
-                        href="https://instagram.com"
+                        href="https://www.instagram.com/myokorokkei/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="insta-link"

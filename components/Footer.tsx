@@ -25,7 +25,7 @@ export default function Footer() {
             title: "Contact",
             links: [
                 { n: "Inquiry Form", h: "#contact" },
-                { n: "Instagram DM", h: "https://instagram.com", external: true },
+                { n: "Instagram DM", h: "https://www.instagram.com/myokorokkei/", external: true },
             ],
         },
     ];
@@ -93,7 +93,7 @@ export default function Footer() {
                             お二人の歩みを記録します。
                         </p>
                         <a
-                            href="https://instagram.com"
+                            href="https://www.instagram.com/myokorokkei/"
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{
