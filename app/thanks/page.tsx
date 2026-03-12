@@ -5,30 +5,28 @@ import { Check } from 'lucide-react'
 
 export default function ThanksPage() {
     return (
-        <main className="h-screen w-full flex items-center justify-center bg-white p-6">
-            <div className="max-w-xl w-full text-center">
-                {/* Simplified Icon: Logo + Checkmark */}
+        <main className="h-screen w-full flex items-center justify-center bg-[#f7f7f7] p-6">
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="max-w-xl w-full bg-white rounded-[32px] p-12 md:p-20 shadow-sm text-center"
+            >
+                {/* Logo Bird */}
                 <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
+                    initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative w-24 h-24 mx-auto mb-10 flex items-center justify-center"
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                    className="relative w-32 h-32 mx-auto mb-10 flex items-center justify-center"
                 >
                     <img 
                         src="/images/logo-bird.png" 
-                        alt="" 
-                        className="w-full h-full object-contain opacity-10 absolute inset-0 mix-blend-multiply"
+                        alt="Myoko Rokkei" 
+                        className="w-full h-full object-contain opacity-40 mix-blend-multiply"
                     />
-                    <div className="relative z-10 w-12 h-12 rounded-full bg-[#121A16] flex items-center justify-center shadow-lg">
-                        <Check size={24} color="#fff" strokeWidth={2.5} />
-                    </div>
                 </motion.div>
 
-                <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                >
+                <div className="overflow-hidden">
                     <h1 className="serif text-3xl md:text-4xl mb-6 tracking-[0.2em] uppercase text-[#121A16]">
                         Thank You
                     </h1>
@@ -45,8 +43,8 @@ export default function ThanksPage() {
                     >
                         Back to Home
                     </Link>
-                </motion.div>
-            </div>
+                </div>
+            </motion.div>
         </main>
     )
 }
