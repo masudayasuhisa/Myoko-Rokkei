@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Instagram } from "lucide-react";
+import { sendEmail } from "@/app/actions/sendEmail";
 
 const inputStyle: React.CSSProperties = {
     padding: "16px 24px",
@@ -110,16 +111,24 @@ export default function Contact() {
                 </div>
 
                 <form
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                         e.preventDefault();
                         setSub(true);
-                        setTimeout(() => (window.location.href = "/thanks"), 1500);
+                        const formData = new FormData(e.currentTarget);
+                        const result = await sendEmail(formData);
+                        
+                        if (result.success) {
+                            window.location.href = "/thanks";
+                        } else {
+                            alert(`送信に失敗しました: ${result.error || "原因不明のエラー"}`);
+                            setSub(false);
+                        }
                     }}
                     style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}
                 >
                     <div>
                         <label style={labelStyle}>Name · お名前</label>
-                        <input required type="text" placeholder="妙高 花子" style={inputStyle}
+                        <input required name="name" type="text" placeholder="妙高 花子" style={inputStyle}
                             onFocus={e => (e.currentTarget.style.borderColor = "rgba(18,26,22,0.3)")}
                             onBlur={e => (e.currentTarget.style.borderColor = "#ebebeb")}
                         />
@@ -127,7 +136,7 @@ export default function Contact() {
 
                     <div>
                         <label style={labelStyle}>Email · メールアドレス</label>
-                        <input required type="email" placeholder="hello@example.com" style={inputStyle}
+                        <input required name="email" type="email" placeholder="hello@example.com" style={inputStyle}
                             onFocus={e => (e.currentTarget.style.borderColor = "rgba(18,26,22,0.3)")}
                             onBlur={e => (e.currentTarget.style.borderColor = "#ebebeb")}
                         />
@@ -136,6 +145,7 @@ export default function Contact() {
                     <div>
                         <label style={labelStyle}>Message · お問い合わせ内容</label>
                         <textarea
+                            name="message"
                             rows={5}
                             required
                             placeholder="撮影日のご希望、ご質問などをお書きください。"
