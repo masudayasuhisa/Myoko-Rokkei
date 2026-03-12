@@ -170,7 +170,7 @@ export default function Contact() {
                             lineHeight: 1.6,
                             letterSpacing: "0.05em"
                         }}>
-                            ご入力いただいた情報は、お問い合わせへの回答のみに使用し、<br className="md:hidden" />
+                            ご入力いただいた情報は、お問い合わせへの回答のみに使用し、<br />
                             プライバシーポリシーに基づき大切に管理いたします。
                         </p>
                         
