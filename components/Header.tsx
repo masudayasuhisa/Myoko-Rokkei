@@ -213,7 +213,7 @@ export default function Header() {
                             flexDirection: "column",
                             alignItems: "center",
                             justifyContent: "center",
-                            gap: "2rem",
+                            gap: "1rem",
                         }}
                     >
                         <button
@@ -311,7 +311,7 @@ export default function Header() {
                                 color: "rgba(255,255,255,0.8)",
                                 display: "flex",
                                 alignItems: "center",
-                                marginTop: "0.5rem",
+                                marginTop: "0.2rem",
                             }}
                         >
                             <Instagram size={22} strokeWidth={1.5} />
@@ -324,7 +324,7 @@ export default function Header() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: NAV.length * 0.08, duration: 0.5 }}
                             style={{
-                                marginTop: "0.5rem",
+                                marginTop: "0.2rem",
                                 fontSize: "9px",
                                 fontWeight: 800,
                                 letterSpacing: "0.25em",
