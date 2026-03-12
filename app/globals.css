@@ -1,0 +1,430 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+:root {
+    --primary: #121A16;
+    --accent: #B08D57;
+    --bg-main: #FFFFFF;
+    --bg-soft: #F9FBFA;
+    --bg-dark: #121A16;
+    --font-serif: 'Shippori Mincho', serif;
+    --font-sans: 'Inter', 'Noto Sans JP', sans-serif;
+    --transition-premium: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --shadow-premium: 0 20px 80px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--primary);
+    background-color: var(--bg-main);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.04em;
+    /* Increased for delicate feel */
+    font-size: 15px;
+    /* Base size reduced */
+}
+
+/* Typography Refresh - More Delicate */
+.serif {
+    font-family: var(--font-serif);
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 80px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 24px;
+    }
+}
+
+@media (max-width: 414px) {
+    .container {
+        padding: 0 20px;
+    }
+}
+
+.section-padding {
+    padding: 140px 0;
+}
+
+@media (max-width: 768px) {
+    .section-padding {
+        padding: 80px 0;
+    }
+}
+
+@media (max-width: 414px) {
+    .section-padding {
+        padding: 60px 0;
+    }
+}
+
+/* Layout Grid Utilities */
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.flex {
+    display: flex;
+}
+
+.v-flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.grid {
+    display: grid;
+}
+
+.gap-8 {
+    gap: 2rem;
+}
+
+.gap-10 {
+    gap: 2.5rem;
+}
+
+.gap-12 {
+    gap: 3rem;
+}
+
+.gap-20 {
+    gap: 5rem;
+}
+
+@media (min-width: 768px) {
+    .v-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .v-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .v-md-flex {
+        display: flex !important;
+    }
+
+    .md\:hidden {
+        display: none !important;
+    }
+
+    .md\:block {
+        display: block !important;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.block {
+    display: block !important;
+}
+
+/* Branding & UI */
+.v-title-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.v-section-title {
+    font-size: 2.2rem;
+    margin-bottom: 3.5rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .v-section-title {
+        font-size: 1.8rem;
+    }
+}
+
+.v-btn-premium {
+    display: inline-flex;
+    align-items: center;
+    padding: 1.1rem 3rem;
+    background-color: var(--primary);
+    color: #FFF;
+    font-weight: 500;
+    border-radius: 100px;
+    letter-spacing: 0.3em;
+    font-size: 0.7rem;
+    transition: var(--transition-premium);
+    border: 1px solid var(--primary);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.v-btn-premium:hover {
+    background-color: transparent;
+    color: var(--primary);
+    transform: translateY(-3px);
+}
+
+/* Specific Utilities */
+.text-center {
+    text-align: center;
+}
+
+.v-bg-soft {
+    background-color: var(--bg-soft);
+}
+
+.v-bg-dark {
+    background-color: var(--bg-dark);
+    color: white;
+}
+
+.v-text-white {
+    color: white !important;
+}
+
+.v-text-soft {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.v-shadow-premium {
+    box-shadow: var(--shadow-premium);
+}
+
+.v-glass-border {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.v-rounded-3xl {
+    border-radius: 24px;
+}
+
+.v-rounded-full {
+    border-radius: 9999px;
+}
+
+.v-overflow-hidden {
+    overflow: hidden;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+.z-0 {
+    z-index: 0;
+}
+
+.z-10 {
+    z-index: 10;
+}
+
+.z-50 {
+    z-index: 50;
+}
+
+.h-screen {
+    height: 100vh;
+}
+
+.v-bg-cover {
+    background-size: cover;
+}
+
+.v-bg-center {
+    background-position: center;
+}
+
+.aspect-4-5 {
+    aspect-ratio: 4 / 5;
+}
+
+/* Padding Utilities */
+.p-8 {
+    padding: 2rem;
+}
+
+.p-10 {
+    padding: 2.5rem;
+}
+
+.p-12 {
+    padding: 3rem;
+}
+
+.p-14 {
+    padding: 3.5rem;
+}
+
+.p-16 {
+    padding: 4rem;
+}
+
+.p-20 {
+    padding: 5rem;
+}
+
+.p-24 {
+    padding: 6rem;
+}
+
+@media (min-width: 768px) {
+    .md\:p-12 {
+        padding: 3rem;
+    }
+
+    .md\:p-14 {
+        padding: 3.5rem;
+    }
+
+    .md\:p-16 {
+        padding: 4rem;
+    }
+
+    .md\:p-20 {
+        padding: 5rem;
+    }
+
+    .md\:p-24 {
+        padding: 6rem;
+    }
+}
+
+/* Margins */
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.mb-10 {
+    margin-bottom: 2.5rem;
+}
+
+.mb-12 {
+    margin-bottom: 3rem;
+}
+
+.mb-16 {
+    margin-bottom: 4rem;
+}
+
+.mb-20 {
+    margin-bottom: 5rem;
+}
+
+.mt-6 {
+    margin-top: 1.5rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header & Scrolling */
+.v-glass {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.v-vertical-rl {
+    writing-mode: vertical-rl;
+}
+
+@keyframes v-scroll {
+    0% {
+        transform: scaleY(0);
+        transform-origin: top;
+    }
+
+    50% {
+        transform: scaleY(1);
+        transform-origin: top;
+    }
+
+    50.1% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+    }
+
+    100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+    }
+}
+
+.v-animate-scroll {
+    animation: v-scroll 2.5s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+}
+
+/* Refined Image Reveal */
+.v-pf-image {
+    transition: transform 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.v-hover-reveal:hover .v-pf-image {
+    transform: scale(1.05);
+}
+
+/* Logo Fix for Non-Transparent PNGs */
+.v-logo-mix {
+    mix-blend-mode: multiply;
+    filter: contrast(110%);
+}
