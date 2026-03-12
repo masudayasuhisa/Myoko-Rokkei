@@ -161,16 +161,17 @@ export default function Contact() {
                         />
                     </div>
 
-                    <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
+                    <div style={{ textAlign: "center", marginTop: "1rem" }}>
                         <p style={{ 
-                            fontSize: "11px", 
+                            fontSize: "10px", 
                             fontFamily: "var(--font-serif)", 
-                            opacity: 0.4, 
-                            marginBottom: "1.5rem",
-                            lineHeight: 1.6 
+                            opacity: 0.35, 
+                            marginBottom: "1rem",
+                            lineHeight: 1.6,
+                            letterSpacing: "0.05em"
                         }}>
-                            送信することで、当サイトのプライバシーポリシーに<br className="md:hidden" />
-                            同意したものとみなされます。
+                            ご入力いただいた情報は、お問い合わせへの回答のみに使用し、<br className="md:hidden" />
+                            プライバシーポリシーに基づき大切に管理いたします。
                         </p>
                         
                         {/* Honeypot Field */}
@@ -180,16 +181,15 @@ export default function Contact() {
 
                         {/* Cloudflare Turnstile */}
                         <div style={{ 
-                            marginBottom: "1.5rem", 
+                            marginBottom: "1rem", 
                             display: "flex", 
                             justifyContent: "center",
-                            minHeight: "65px" 
                         }}>
                             <div 
                                 className="cf-turnstile" 
                                 data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "your-site-key"}
                                 data-theme="light"
-                                data-size="normal"
+                                data-size="compact" // Changed to compact to reduce space
                             ></div>
                         </div>
 
