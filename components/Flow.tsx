@@ -104,7 +104,7 @@ export default function Flow() {
                         ))}
                     </div>
 
-                    <div className="text-center mt-32">
+                    <div className="text-center" style={{ marginTop: '28px' }}>
                         <p className="serif italic opacity-40" style={{ fontSize: '0.9rem' }}>
                             <span className="inline-block">お二人の想いに寄り添いながら、</span><br className="inline md:hidden" />
                             <span className="inline-block">準備からお届けまで、</span>
