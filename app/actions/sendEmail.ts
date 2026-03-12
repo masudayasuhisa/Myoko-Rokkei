@@ -14,17 +14,22 @@ export async function sendEmail(formData: FormData) {
     }
 
     try {
-        const data = await resend.emails.send({
-            from: 'Myoko Rokkei <onboarding@resend.dev>', // Change to 'Contact <noreply@myoko-rokkei.jp>' after domain verification
+        const { data, error } = await resend.emails.send({
+            from: 'Myoko Rokkei <onboarding@resend.dev>',
             to: ['info@myoko-rokkei.jp'], 
             subject: `Contact from ${name}`,
             reply_to: email,
             text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         })
 
-        return { success: true, data }
-    } catch (error) {
-        console.error("Email error:", error)
-        return { error: "Failed to send email" }
+        if (error) {
+            console.error("Resend API Error:", error)
+            return { error: error.message || "Failed to send email" }
+        }
+
+        return { success: true }
+    } catch (err) {
+        console.error("Unexpected error:", err)
+        return { error: "Internal server error" }
     }
 }
