@@ -21,7 +21,7 @@ export async function sendEmail(formData: FormData) {
     try {
         // 1. Admin Notification
         const adminEmail = await resend.emails.send({
-            from: 'Myoko Rokkei <onboarding@resend.dev>',
+            from: '妙高麓景 <noreply@myoko-rokkei.jp>',
             to: ['info@myoko-rokkei.jp'], 
             subject: `【お問い合わせ】${name}様より`,
             reply_to: email,
@@ -34,9 +34,8 @@ export async function sendEmail(formData: FormData) {
         }
 
         // 2. Auto Response to User
-        // 注意: Resendのドメイン認証が完了するまでは、宛先が自分以外だとエラーになる可能性があります
         const userEmail = await resend.emails.send({
-            from: '妙高麓景 <onboarding@resend.dev>',
+            from: '妙高麓景 <noreply@myoko-rokkei.jp>',
             to: [email],
             subject: '【妙高麓景】お問い合わせありがとうございます',
             text: `${name} 様
