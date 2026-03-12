@@ -18,7 +18,7 @@ export async function sendEmail(formData: FormData) {
             from: 'Myoko Rokkei <onboarding@resend.dev>', // Change to 'Contact <noreply@myoko-rokkei.jp>' after domain verification
             to: ['info@myoko-rokkei.jp'], 
             subject: `Contact from ${name}`,
-            replyTo: email,
+            reply_to: email,
             text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         })
 
