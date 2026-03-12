@@ -5,6 +5,11 @@ import { Resend } from 'resend'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function sendEmail(formData: FormData) {
+    if (!process.env.RESEND_API_KEY) {
+        console.error("RESEND_API_KEY is not defined in environment variables.")
+        return { error: "API Key configuration error" }
+    }
+
     const name = formData.get('name') as string
     const email = formData.get('email') as string
     const message = formData.get('message') as string
