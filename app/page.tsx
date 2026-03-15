@@ -13,6 +13,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ContactTab from "@/components/ContactTab";
 import BackToTop from "@/components/BackToTop";
+import Teaser from "@/components/Teaser";
 
 const fadeInUp = {
     initial: { opacity: 0, y: 40 },
@@ -81,6 +82,10 @@ export default function Home() {
 
                 <motion.div {...fadeInUp}>
                     <Gallery />
+                </motion.div>
+
+                <motion.div {...fadeInUp}>
+                    <Teaser />
                 </motion.div>
 
                 <motion.section id="location" className="section-padding v-bg-soft" {...fadeInUp}>
