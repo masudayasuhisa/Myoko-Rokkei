@@ -5,7 +5,7 @@ export default function Team() {
     const members = [
         {
             name: "Y. Masuda",
-            role: "Creative Director",
+            role: "Creative Director / Designer",
             img: "/images/prof/masuda.jpg",
             bio: "広告やPR分野でも活動するクリエイティブディレクター。妙高の風景に魅せられ、この妙高麓景のプランを立ち上げる。自身の婚礼撮影のマネジメントキャリアを活かしつつ、プラン構築を統括します。"
         },

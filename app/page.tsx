@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Hero from "@/components/Hero";
 import Concept from "@/components/Concept";
@@ -23,6 +24,17 @@ const fadeInUp = {
 };
 
 export default function Home() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
     return (
         <div className="relative">
             <Header />
@@ -33,47 +45,41 @@ export default function Home() {
 
                 {/* Lead copy below hero */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
                     style={{
-                        textAlign: "center",
-                        padding: "80px 24px",
+                        padding: isMobile ? "100px 24px 40px" : "160px 24px 80px",
                         background: "#fff",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
                     }}
                 >
-                    <p
+                    <div
                         style={{
+                            writingMode: "vertical-rl",
                             fontFamily: "var(--font-serif)",
-                            fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
-                            lineHeight: 2.6,
-                            letterSpacing: "0.08em",
-                            color: "rgba(18,26,22,0.65)",
-                            maxWidth: "560px",
+                            fontSize: isMobile ? "0.9rem" : "clamp(0.95rem, 1.25vw, 1.1rem)",
+                            lineHeight: isMobile ? 2.4 : 3.2,
+                            letterSpacing: "0.2em",
+                            color: "rgba(18,26,22,0.8)",
+                            height: isMobile ? "440px" : "480px", // Increased mobile height to prevent early break
                             margin: "0 auto",
+                            textAlign: "justify",
                         }}
                     >
                         この妙高麓景のウェディングフォトは、<br />
                         クリエイティブチームのメンバーが<br />
                         ここ妙高の地の雄大な自然に深く魅せられ、<br />
                         この地の魅力をおふたりの記念日と重ねて<br />
-                        お届けしていきたいと思ったところがはじまり。
-                    </p>
-                    <p
-                        style={{
-                            fontFamily: "var(--font-serif)",
-                            fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
-                            lineHeight: 2.6,
-                            letterSpacing: "0.08em",
-                            color: "rgba(18,26,22,0.65)",
-                            maxWidth: "560px",
-                            margin: "1.6rem auto 0",
-                        }}
-                    >
+                        お届けしていきたいと思ったところがはじまり。<br />
+                        <br />
                         妙高が大好きな方も、はじめましての方も。<br />
-                        このおおらかな土地とおふたりの未来、<br className="md:hidden" />重ねてみませんか。
-                    </p>
+                        このおおらかな土地とおふたりの未来、<br />
+                        重ねてみませんか。
+                    </div>
                 </motion.div>
 
                 <motion.div {...fadeInUp}>

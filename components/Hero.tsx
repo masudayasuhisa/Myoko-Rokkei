@@ -50,6 +50,9 @@ const MOBILE_IMAGES = [
     "/images/top_sp/14.png",
 ];
 
+// --- Layout configuration ---
+const VERTICAL_LAYOUT = true; // Set to false to revert to horizontal layout
+
 export default function Hero() {
     const [mounted, setMounted] = useState(false);
     const [pcIndex, setPcIndex] = useState(0);
@@ -192,68 +195,211 @@ export default function Hero() {
 
             {/* Content */}
             <motion.div
+                className="container"
                 style={{
                     position: "relative",
                     zIndex: 10,
-                    textAlign: "center",
-                    top: "40px",
+                    top: VERTICAL_LAYOUT ? (isMobile ? "0" : "0") : "40px",
                     width: "100%",
-                    padding: isMobile ? "0 20px" : "0 80px",
-                    maxWidth: "1600px",
-                    margin: "0 auto"
+                    height: VERTICAL_LAYOUT ? (isMobile ? "calc(100vh - 180px)" : "500px") : "auto",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: isMobile ? "flex-end" : "center",
+                    alignItems: isMobile ? "center" : "flex-start",
+                    paddingBottom: isMobile ? "40px" : "0",
                 }}
                 variants={stagger}
                 initial="hidden"
                 animate="show"
             >
-                <motion.span
-                    variants={fadeUp}
-                    style={{
-                        display: "block",
-                        fontFamily: "var(--font-serif)",
-                        fontSize: "13px",
-                        fontWeight: 600,
-                        letterSpacing: "0.2em",
-                        color: "#fff",
-                        marginBottom: "15px",
-                    }}
-                >
-                    Nature&apos;s Grandeur,{isMobile ? <br /> : " "}Your Everlasting Vow.
-                </motion.span>
+                {VERTICAL_LAYOUT && !isMobile && (
+                    <motion.div
+                        variants={fadeUp}
+                        style={{
+                            position: "absolute",
+                            right: "100px",
+                            top: "20px", // Even closer to top
+                            display: "flex",
+                            flexDirection: "row-reverse",
+                            gap: "1.8rem", // Further reduce gap
+                        }}
+                    >
+                        <h1
+                            style={{
+                                fontFamily: "var(--font-serif)",
+                                color: "#fff",
+                                fontSize: "clamp(2.5rem, 5vw, 3.6rem)",
+                                writingMode: "vertical-rl",
+                                letterSpacing: "0.15em",
+                                lineHeight: 1.0,
+                                textShadow: "0 0 50px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                            }}
+                        >
+                            ふるさとの山に、
+                        </h1>
+                        <h1
+                            style={{
+                                fontFamily: "var(--font-serif)",
+                                color: "#fff",
+                                fontSize: "clamp(2.5rem, 5vw, 3.6rem)",
+                                writingMode: "vertical-rl",
+                                letterSpacing: "0.15em",
+                                lineHeight: 1.0,
+                                textShadow: "0 0 50px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                            }}
+                        >
+                            永遠を誓う。
+                        </h1>
+                    </motion.div>
+                )}
 
-                <motion.h1
-                    variants={fadeUp}
-                    style={{
-                        fontFamily: "var(--font-serif)",
-                        color: "#fff",
-                        fontSize: "clamp(2rem, 5.5vw, 3.8rem)",
-                        lineHeight: 1.3,
-                        marginBottom: "1.5rem",
-                        textShadow: isMobile
-                            ? "0 0 60px rgba(255,255,255,0.6), 0 0 30px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.5)"
-                            : "0 0 50px rgba(255,255,255,0.45), 0 0 20px rgba(255,255,255,0.25), 0 2px 20px rgba(0,0,0,0.4)",
-                    }}
-                >
-                    <span className="inline-block">ふるさとの山に、</span>
-                    <br />
-                    <span className="inline-block">永遠を誓う。</span>
-                </motion.h1>
+                {VERTICAL_LAYOUT && isMobile && (
+                    <motion.div
+                        variants={fadeUp}
+                        style={{
+                            display: "flex",
+                            flexDirection: "row-reverse",
+                            justifyContent: "center",
+                            gap: "1.2rem",
+                            position: "absolute",
+                            top: "40px",
+                            left: 0,
+                            right: 0,
+                            zIndex: 20
+                        }}
+                    >
+                        <h1
+                            style={{
+                                fontFamily: "var(--font-serif)",
+                                color: "#fff",
+                                fontSize: "2.4rem",
+                                writingMode: "vertical-rl",
+                                letterSpacing: "0.2em",
+                                lineHeight: 1.4,
+                                textShadow: "0 0 30px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                            }}
+                        >
+                            ふるさとの山に、
+                        </h1>
+                        <h1
+                            style={{
+                                fontFamily: "var(--font-serif)",
+                                color: "#fff",
+                                fontSize: "2.4rem",
+                                writingMode: "vertical-rl",
+                                letterSpacing: "0.2em",
+                                lineHeight: 1.4,
+                                textShadow: "0 0 30px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                            }}
+                        >
+                            永遠を誓う。
+                        </h1>
+                    </motion.div>
+                )}
+
+                {!VERTICAL_LAYOUT && (
+                    <>
+                        <motion.span
+                            variants={fadeUp}
+                            style={{
+                                display: "block",
+                                fontFamily: "var(--font-serif)",
+                                fontSize: "13px",
+                                fontWeight: 600,
+                                letterSpacing: "0.2em",
+                                color: "#fff",
+                                marginBottom: "15px",
+                            }}
+                        >
+                            Nature&apos;s Grandeur,{isMobile ? <br /> : " "}Your Everlasting Vow.
+                        </motion.span>
+
+                        <motion.h1
+                            variants={fadeUp}
+                            style={{
+                                fontFamily: "var(--font-serif)",
+                                color: "#fff",
+                                fontSize: "clamp(2rem, 5.5vw, 3.8rem)",
+                                lineHeight: 1.3,
+                                marginBottom: "1.5rem",
+                                textShadow: isMobile
+                                    ? "0 0 60px rgba(255,255,255,0.6), 0 0 30px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.5)"
+                                    : "0 0 50px rgba(255,255,255,0.45), 0 0 20px rgba(255,255,255,0.25), 0 2px 20px rgba(0,0,0,0.4)",
+                            }}
+                        >
+                            <span className="inline-block">ふるさとの山に、</span>
+                            <br />
+                            <span className="inline-block">永遠を誓う。</span>
+                        </motion.h1>
+
+                        <motion.div
+                            variants={fadeUp}
+                            style={{
+                                fontSize: "10px",
+                                fontWeight: 800,
+                                letterSpacing: "0.4em",
+                                color: "rgba(255,255,255,0.6)",
+                                textTransform: "uppercase",
+                            }}
+                        >
+                            MYOKO ROKKEI | WEDDING PHOTO
+                        </motion.div>
+                    </>
+                )}
+
+                {VERTICAL_LAYOUT && (
+                    <div style={{ 
+                        maxWidth: isMobile ? "100%" : "500px",
+                        textAlign: isMobile ? "center" : "left"
+                    }}>
+                        <motion.span
+                            variants={fadeUp}
+                            style={{
+                                display: "block",
+                                fontFamily: "var(--font-serif)",
+                                fontSize: isMobile ? "11px" : "13px",
+                                fontWeight: 600,
+                                letterSpacing: "0.2em",
+                                color: "#fff",
+                                marginBottom: "20px",
+                                opacity: 0.9
+                            }}
+                        >
+                            Nature&apos;s Grandeur,<br />Your Everlasting Vow.
+                        </motion.span>
+
+                        <motion.div
+                            variants={fadeUp}
+                            style={{
+                                fontSize: "10px",
+                                fontWeight: 800,
+                                letterSpacing: "0.45em",
+                                color: "rgba(255,255,255,0.7)",
+                                textTransform: "uppercase",
+                                marginBottom: "40px"
+                            }}
+                        >
+                            {isMobile ? (
+                                <>MYOKO ROKKEI<br />WEDDING PHOTO</>
+                            ) : (
+                                <>MYOKO ROKKEI | WEDDING PHOTO</>
+                            )}
+                        </motion.div>
+                    </div>
+                )}
+
 
                 <motion.div
                     variants={fadeUp}
+                    className="hero-buttons"
                     style={{
-                        fontSize: "10px",
-                        fontWeight: 800,
-                        letterSpacing: "0.4em",
-                        color: "rgba(255,255,255,0.6)",
-                        textTransform: "uppercase",
+                        display: "flex",
+                        gap: isMobile ? "10px" : "24px",
+                        justifyContent: VERTICAL_LAYOUT ? (isMobile ? "center" : "flex-start") : "center",
+                        flexWrap: "wrap",
+                        marginTop: VERTICAL_LAYOUT ? (isMobile ? "20px" : "20px") : "190px"
                     }}
                 >
-                    MYOKO ROKKEI | WEDDING PHOTO
-                </motion.div>
-
-
-                <motion.div variants={fadeUp} className="hero-buttons" style={{ display: "flex", gap: "30px", justifyContent: "center", flexWrap: "wrap", marginTop: "190px" }}>
                     <a
                         href="#plan"
                         className="hero-btn"
@@ -322,24 +468,26 @@ export default function Hero() {
                         }
                         @media (max-width: 768px) {
                             .hero-buttons {
-                                margin-top: 120px !important;
+                                margin-top: ${VERTICAL_LAYOUT ? "0px" : "120px"} !important;
                                 gap: 15px !important;
-                                flex-direction: column !important;
+                                flex-direction: ${VERTICAL_LAYOUT ? "row" : "column"} !important;
+                                justify-content: center !important;
                                 align-items: center !important;
                             }
                             .hero-btn {
-                                width: 220px !important;
-                                padding: 1.2rem 0 !important;
+                                width: ${VERTICAL_LAYOUT ? "160px" : "220px"} !important;
+                                padding: ${VERTICAL_LAYOUT ? "0.9rem 0" : "1.2rem 0"} !important;
                             }
                         }
                         @media (max-width: 414px) {
                             .hero-buttons {
-                                margin-top: 80px !important;
+                                margin-top: ${VERTICAL_LAYOUT ? "0px" : "80px"} !important;
                             }
                         }
                     `}</style>
                 </motion.div>
             </motion.div>
+
 
             {/* Scroll indicator */}
             <motion.div
