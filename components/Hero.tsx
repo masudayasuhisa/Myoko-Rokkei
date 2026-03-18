@@ -201,10 +201,10 @@ export default function Hero() {
                     zIndex: 10,
                     top: VERTICAL_LAYOUT ? (isMobile ? "0" : "0") : "40px",
                     width: "100%",
-                    height: VERTICAL_LAYOUT ? (isMobile ? "calc(100vh - 180px)" : "500px") : "auto",
+                    height: VERTICAL_LAYOUT ? (isMobile ? "calc(100vh - 160px)" : "500px") : "auto",
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: isMobile ? "flex-end" : "center",
+                    justifyContent: isMobile ? "flex-start" : "center",
                     alignItems: isMobile ? "center" : "flex-start",
                     paddingBottom: isMobile ? "40px" : "0",
                 }}
@@ -261,10 +261,9 @@ export default function Hero() {
                             flexDirection: "row-reverse",
                             justifyContent: "center",
                             gap: "1.2rem",
-                            position: "absolute",
-                            top: "40px",
-                            left: 0,
-                            right: 0,
+                            position: "relative",
+                            marginTop: "20px",
+                            marginBottom: "auto",
                             zIndex: 20
                         }}
                     >
