@@ -56,7 +56,7 @@ export default function Team() {
                     {members.map((m, i) => (
                         <motion.div
                             key={i}
-                            className="bg-white p-8 md:p-12 v-rounded-3xl v-shadow-premium flex flex-col items-start text-left group"
+                            className="v-bg-paper p-8 md:p-12 v-rounded-3xl v-shadow-premium flex flex-col items-start text-left group"
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}

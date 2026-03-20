@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Concept() {
     return (
-        <section id="concept" className="section-padding bg-white v-overflow-hidden">
+        <section id="concept" className="section-padding v-bg-paper v-overflow-hidden">
             <div className="container grid v-grid-2 gap-20 items-start">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}

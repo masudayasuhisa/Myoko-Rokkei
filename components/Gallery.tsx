@@ -54,7 +54,7 @@ export default function Gallery() {
     }, [selectedIdx, next, prev]);
 
     return (
-        <section id="gallery" style={{ padding: "100px 0", background: "#f8f7f5" }}>
+        <section id="gallery" className="v-bg-paper" style={{ padding: "100px 0" }}>
             <div className="container">
                 <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
                     <img src="/images/illus-bird.png" alt="" aria-hidden="true" style={{ width: "64px", display: "block", margin: "0 auto 0.8rem", mixBlendMode: "multiply" }} />

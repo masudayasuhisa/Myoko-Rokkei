@@ -49,9 +49,9 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+                    className="v-bg-paper"
                     style={{
                         padding: isMobile ? "100px 24px 40px" : "160px 24px 80px",
-                        background: "#fff",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",

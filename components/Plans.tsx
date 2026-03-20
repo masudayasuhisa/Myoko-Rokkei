@@ -54,7 +54,7 @@ export default function Plans() {
     }, []);
 
     return (
-        <section id="plan" className="v-plans-section bg-white" style={{ padding: isMobile ? "100px 0" : "180px 0" }}>
+        <section id="plan" className="v-plans-section v-bg-paper" style={{ padding: isMobile ? "100px 0" : "180px 0" }}>
             <div className="container">
                 <div style={{ textAlign: "center", marginBottom: "6rem" }}>
                     <img src="/images/illus-ring.png" alt="" aria-hidden="true" style={{ width: "64px", display: "block", margin: "0 auto 0.8rem", mixBlendMode: "multiply" }} />
@@ -74,9 +74,10 @@ export default function Plans() {
                             viewport={{ once: true }}
                             transition={{ duration: 1, delay: i * 0.1 }}
                             style={{
-                                backgroundColor: "#F3F5F4",
+                                backgroundColor: "#FFFFFF",
                                 padding: isMobile ? "40px 2rem" : "50px 3rem",
-                                boxSizing: "border-box"
+                                boxSizing: "border-box",
+                                border: "1px solid rgba(18,26,22,0.03)"
                             }}
                         >
                             <div className="flex-1 flex flex-col items-center w-full">

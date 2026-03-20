@@ -26,7 +26,7 @@ const values = [
 
 export default function Values() {
     return (
-        <section style={{ padding: "100px 0", background: "#fff" }}>
+        <section className="v-bg-paper" style={{ padding: "100px 0" }}>
             <div className="container">
                 {/* Header */}
                 <motion.div

@@ -21,7 +21,7 @@ export default function Flow() {
     ];
 
     return (
-        <section id="flow" className="section-padding bg-white">
+        <section id="flow" className="section-padding v-bg-paper">
             <div className="container">
                 <div className="text-center mb-32">
                     <img src="/images/illus-flow.png" alt="" aria-hidden="true" style={{ width: '60px', display: 'block', margin: '0 auto 0.8rem', mixBlendMode: 'multiply' }} />

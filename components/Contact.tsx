@@ -32,7 +32,7 @@ export default function Contact() {
     const [sub, setSub] = useState(false);
 
     return (
-        <section id="contact" style={{ padding: "100px 0", background: "#fff" }}>
+        <section id="contact" className="v-bg-paper" style={{ padding: "100px 0" }}>
             <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
             <div className="container" style={{ maxWidth: "640px" }}>
                 <div style={{ textAlign: "center", marginBottom: "3rem" }}>
