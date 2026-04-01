@@ -6,16 +6,16 @@ export const metadata: Metadata = {
     title: "妙高麓景 | Myoko Rokkei Wedding Photo - 妙高の大自然で叶えるウェディングフォト",
     description: "妙高の豊かな自然を舞台にした、一生に一度のウェディングフォトプラン。クリエイティブチームが、この地の雄大な風景とおふたりの未来を重ね、特別な1日を優しく紡いでいきます。",
     alternates: {
-        canonical: "https://www.myoko-rokkei.jp",
+        canonical: "https://myoko-rokkei.jp",
     },
     openGraph: {
         title: "妙高麓景 | Myoko Rokkei Wedding Photo",
         description: "妙高の豊かな自然を舞台にした、一生に一度のウェディングフォトプラン。",
-        url: "https://www.myoko-rokkei.jp",
+        url: "https://myoko-rokkei.jp",
         siteName: "妙高麓景",
         images: [
             {
-                url: "https://www.myoko-rokkei.jp/images/mv-center.jpg", // Assuming this exists or is a good hero image
+                url: "https://myoko-rokkei.jp/images/mv-center.jpg", // Assuming this exists or is a good hero image
                 width: 1200,
                 height: 630,
             },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "妙高麓景 | Myoko Rokkei Wedding Photo",
         description: "妙高の豊かな自然を舞台にした、一生に一度のウェディングフォトプラン。",
-        images: ["https://www.myoko-rokkei.jp/images/mv-center.jpg"],
+        images: ["https://myoko-rokkei.jp/images/mv-center.jpg"],
     },
     icons: {
         icon: "/favicon.png",
