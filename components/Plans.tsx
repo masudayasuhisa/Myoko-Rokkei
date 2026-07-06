@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const plans = [
+const plans_ja = [
     {
         name: "Myoko Alouette",
         subtitle: "(洋装プラン)",
@@ -43,7 +43,49 @@ const plans = [
     },
 ];
 
-export default function Plans() {
+const plans_en = [
+    {
+        name: "Myoko Alouette",
+        subtitle: "(Wedding Dress & Suit)",
+        price: "4,000",
+        details: ["Dress & Suit / Hair & Makeup", "1 Photoshoot Location"],
+        includes: [
+            "Selected High-Res Data (100+ cuts)",
+            "1 Wedding Dress & Suit (Wedding Attire)",
+            "Full Accessories & Props",
+            "Hair, Makeup & On-site Attendant",
+            "Retouching on Selected Photos"
+        ]
+    },
+    {
+        name: "Awai Myoko",
+        subtitle: "(Kimono Style)",
+        price: "5,200",
+        details: ["Kimono & Dressing & Hair & Makeup", "1 Photoshoot Location"],
+        includes: [
+            "Selected High-Res Data (100+ cuts)",
+            "1 Traditional Kimono (Wedding Attire)",
+            "Kimono Dressing & Accessories",
+            "Hair, Makeup & On-site Attendant",
+            "Retouching on Selected Photos"
+        ]
+    },
+    {
+        name: "Twain: Myoko Rokkei",
+        subtitle: "(Dress & Suit + Kimono)",
+        price: "6,800",
+        details: ["Dress & Suit, Kimono / Dressing & Hair & Makeup", "2 Photoshoot Locations"],
+        includes: [
+            "Selected High-Res Data (200+ cuts)",
+            "1 Wedding Dress/Suit & 1 Traditional Kimono (Wedding Attire)",
+            "Dressing, Accessories & Props",
+            "Hair, Makeup & On-site Attendant",
+            "Retouching on Selected Photos"
+        ]
+    },
+];
+
+export default function Plans({ locale = "ja" }: { locale?: "en" | "ja" }) {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -53,6 +95,8 @@ export default function Plans() {
         return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
+    const plans = locale === "en" ? plans_en : plans_ja;
+
     return (
         <section id="plan" className="v-plans-section v-bg-paper" style={{ padding: isMobile ? "100px 0" : "180px 0" }}>
             <div className="container">
@@ -60,7 +104,7 @@ export default function Plans() {
                     <img src="/images/illus-ring.png" alt="" aria-hidden="true" style={{ width: "64px", display: "block", margin: "0 auto 0.8rem", mixBlendMode: "multiply" }} />
                     <span className="v-title-tag">Plans</span>
                     <h2 className="v-section-title serif mb-0">
-                        撮影プラン
+                        {locale === "en" ? "Shooting Plans" : "撮影プラン"}
                     </h2>
                 </div>
 
@@ -84,14 +128,6 @@ export default function Plans() {
                                 <h3 className="serif mb-2" style={{ fontSize: "1.4rem", lineHeight: 1.4 }}>{plan.name}</h3>
                                 <span className="serif mb-8 block opacity-50" style={{ fontSize: "0.9rem" }}>{plan.subtitle}</span>
 
-                                <div className="text-accent mb-8" style={{ fontFamily: "var(--font-serif)", lineHeight: 1.6 }}>
-                                    <div style={{ fontSize: "1.8rem" }}>
-                                        <span style={{ fontSize: "0.8rem", marginRight: "4px" }}>¥</span>
-                                        {plan.price}
-                                    </div>
-                                    <div style={{ fontSize: "0.7rem", opacity: 0.4, letterSpacing: "0.08em" }}>Tax included</div>
-                                </div>
-
                                 <div className="serif mb-10" style={{ fontSize: "0.95rem", lineHeight: 2.2, opacity: 0.8 }}>
                                     {plan.details.map((line, idx) => (
                                         <div key={idx}>{line}</div>
@@ -113,7 +149,7 @@ export default function Plans() {
 
                 <div style={{ maxWidth: "1200px", margin: "3rem auto 0", textAlign: "center" }}>
                     <p className="serif" style={{ fontSize: "0.85rem", opacity: 0.5 }}>
-                        ※ロケ地により別途費用発生
+                        {locale === "en" ? "* Additional location fees may apply depending on your choice of photoshoot spots." : "※ロケ地により別途費用発生"}
                     </p>
                 </div>
             </div>
