@@ -66,7 +66,8 @@ export default function ContactTab({ locale = "ja" }: { locale?: "en" | "ja" }) 
         <AnimatePresence>
             {visible && (
                 <motion.a
-                    href="#contact"
+                    href={locale === "en" ? "https://wa.me/819063309143" : "#contact"}
+                    {...(locale === "en" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     variants={variants}
                     initial="initial"
                     animate={isMobile ? "mobileAnimate" : "animate"}

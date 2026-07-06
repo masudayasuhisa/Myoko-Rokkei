@@ -124,131 +124,156 @@ export default function Contact({ locale = "ja" }: { locale?: "en" | "ja" }) {
                     `}</style>
                 </div>
 
-                <form
-                    onSubmit={async (e) => {
-                        e.preventDefault();
-                        setSub(true);
-                        const formData = new FormData(e.currentTarget);
-                        const result = await sendEmail(formData);
-                        
-                        if (result.success) {
-                            window.location.href = locale === "en" ? "/en/thanks" : "/thanks";
-                        } else {
-                            const errMessage = locale === "en" 
-                                ? `Failed to send: ${result.error || "Unknown error"}` 
-                                : `送信に失敗しました: ${result.error || "原因不明のエラー"}`;
-                            alert(errMessage);
-                            setSub(false);
-                        }
-                    }}
-                    style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}
-                >
-                    {/* Hidden Language Field */}
-                    <input type="hidden" name="lang" value={locale} />
-
-                    <div>
-                        <label style={labelStyle}>
-                            {locale === "en" ? "Name" : "Name · お名前"}
-                        </label>
-                        <input required name="name" type="text" placeholder={locale === "en" ? "Jane Doe" : "妙高 花子"} style={inputStyle}
-                            onFocus={e => (e.currentTarget.style.borderColor = "rgba(18,26,22,0.3)")}
-                            onBlur={e => (e.currentTarget.style.borderColor = "#ebebeb")}
-                        />
-                    </div>
-
-                    <div>
-                        <label style={labelStyle}>
-                            {locale === "en" ? "Email Address" : "Email · メールアドレス"}
-                        </label>
-                        <input required name="email" type="email" placeholder="hello@example.com" style={inputStyle}
-                            onFocus={e => (e.currentTarget.style.borderColor = "rgba(18,26,22,0.3)")}
-                            onBlur={e => (e.currentTarget.style.borderColor = "#ebebeb")}
-                        />
-                    </div>
-
-                    <div>
-                        <label style={labelStyle}>
-                            {locale === "en" ? "Message" : "Message · お問い合わせ内容"}
-                        </label>
-                        <textarea
-                            name="message"
-                            rows={5}
-                            required
-                            placeholder={locale === "en" ? "Please write your preferred photoshoot date, questions, etc." : "撮影日のご希望、ご質問などをお書きください。"}
-                            style={{
-                                ...inputStyle,
-                                borderRadius: "20px",
-                                resize: "none",
-                            }}
-                            onFocus={e => (e.currentTarget.style.borderColor = "rgba(18,26,22,0.3)")}
-                            onBlur={e => (e.currentTarget.style.borderColor = "#ebebeb")}
-                        />
-                    </div>
-
+                {locale === "en" ? (
                     <div style={{ textAlign: "center", marginTop: "1rem" }}>
-                        <p style={{ 
-                            fontSize: "10px", 
-                            fontFamily: "var(--font-serif)", 
-                            opacity: 0.35, 
-                            marginBottom: "1rem",
-                            lineHeight: 1.6,
-                            letterSpacing: "0.05em"
-                        }}>
-                            {locale === "en" ? (
-                                <>
-                                    The information you enter will only be used to respond to your inquiry<br />
-                                    and will be managed carefully in accordance with our privacy policy.
-                                </>
-                            ) : (
-                                <>
-                                    ご入力いただいた情報は、お問い合わせへの回答のみに使用し、<br />
-                                    プライバシーポリシーに基づき大切に管理いたします。
-                                </>
-                            )}
-                        </p>
-                        
-                        {/* Honeypot Field */}
-                        <div style={{ display: 'none' }} aria-hidden="true">
-                            <input type="text" name="hp_field" tabIndex={-1} autoComplete="off" />
-                        </div>
-
-                        {/* Cloudflare Turnstile */}
-                        <div style={{ 
-                            marginBottom: "1rem", 
-                            display: "flex", 
-                            justifyContent: "center",
-                        }}>
-                            <div 
-                                className="cf-turnstile" 
-                                data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "your-site-key"}
-                                data-theme="light"
-                                data-size="compact"
-                            ></div>
-                        </div>
-
-                        <button
-                            disabled={sub}
+                        <a
+                            href="https://wa.me/819063309143"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             style={{
                                 display: "inline-block",
-                                padding: "1rem 3rem",
-                                background: "var(--primary)",
+                                padding: "1.2rem 3.5rem",
+                                background: "#25D366",
                                 color: "#fff",
                                 border: "none",
                                 borderRadius: "100px",
-                                fontSize: "10px",
+                                fontSize: "11px",
                                 fontWeight: 700,
-                                letterSpacing: "0.3em",
+                                letterSpacing: "0.25em",
                                 textTransform: "uppercase",
-                                cursor: sub ? "not-allowed" : "pointer",
-                                opacity: sub ? 0.5 : 1,
+                                cursor: "pointer",
                                 transition: "all 0.4s ease",
-                                minWidth: "200px",
+                                textDecoration: "none",
+                                boxShadow: "0 4px 14px rgba(37, 211, 102, 0.2)",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = "#20ba5a";
+                                e.currentTarget.style.transform = "translateY(-1px)";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = "#25D366";
+                                e.currentTarget.style.transform = "translateY(0)";
                             }}
                         >
-                            {sub ? (locale === "en" ? "Sending..." : "送信中...") : (locale === "en" ? "Send Message" : "送信する")}
-                        </button>
+                            Contact via WhatsApp
+                        </a>
                     </div>
-                </form>
+                ) : (
+                    <form
+                        onSubmit={async (e) => {
+                            e.preventDefault();
+                            setSub(true);
+                            const formData = new FormData(e.currentTarget);
+                            const result = await sendEmail(formData);
+                            
+                            if (result.success) {
+                                window.location.href = "/thanks";
+                            } else {
+                                const errMessage = `送信に失敗しました: ${result.error || "原因不明のエラー"}`;
+                                alert(errMessage);
+                                setSub(false);
+                            }
+                        }}
+                        style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}
+                    >
+                        {/* Hidden Language Field */}
+                        <input type="hidden" name="lang" value={locale} />
+
+                        <div>
+                            <label style={labelStyle}>
+                                Name · お名前
+                            </label>
+                            <input required name="name" type="text" placeholder="妙高 花子" style={inputStyle}
+                                onFocus={e => (e.currentTarget.style.borderColor = "rgba(18,26,22,0.3)")}
+                                onBlur={e => (e.currentTarget.style.borderColor = "#ebebeb")}
+                            />
+                        </div>
+
+                        <div>
+                            <label style={labelStyle}>
+                                Email · メールアドレス
+                            </label>
+                            <input required name="email" type="email" placeholder="hello@example.com" style={inputStyle}
+                                onFocus={e => (e.currentTarget.style.borderColor = "rgba(18,26,22,0.3)")}
+                                onBlur={e => (e.currentTarget.style.borderColor = "#ebebeb")}
+                            />
+                        </div>
+
+                        <div>
+                            <label style={labelStyle}>
+                                Message · お問い合わせ内容
+                            </label>
+                            <textarea
+                                name="message"
+                                rows={5}
+                                required
+                                placeholder="撮影日のご希望、ご質問などをお書きください。"
+                                style={{
+                                    ...inputStyle,
+                                    borderRadius: "20px",
+                                    resize: "none",
+                                }}
+                                onFocus={e => (e.currentTarget.style.borderColor = "rgba(18,26,22,0.3)")}
+                                onBlur={e => (e.currentTarget.style.borderColor = "#ebebeb")}
+                            />
+                        </div>
+
+                        <div style={{ textAlign: "center", marginTop: "1rem" }}>
+                            <p style={{ 
+                                fontSize: "10px", 
+                                fontFamily: "var(--font-serif)", 
+                                opacity: 0.35, 
+                                marginBottom: "1rem",
+                                lineHeight: 1.6,
+                                letterSpacing: "0.05em"
+                            }}>
+                                ご入力いただいた情報は、お問い合わせへの回答のみに使用し、<br />
+                                プライバシーポリシーに基づき大切に管理いたします。
+                            </p>
+                            
+                            {/* Honeypot Field */}
+                            <div style={{ display: 'none' }} aria-hidden="true">
+                                <input type="text" name="hp_field" tabIndex={-1} autoComplete="off" />
+                            </div>
+
+                            {/* Cloudflare Turnstile */}
+                            <div style={{ 
+                                marginBottom: "1rem", 
+                                display: "flex", 
+                                justifyContent: "center",
+                            }}>
+                                <div 
+                                    className="cf-turnstile" 
+                                    data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "your-site-key"}
+                                    data-theme="light"
+                                    data-size="compact"
+                                ></div>
+                            </div>
+
+                            <button
+                                disabled={sub}
+                                style={{
+                                    display: "inline-block",
+                                    padding: "1rem 3rem",
+                                    background: "var(--primary)",
+                                    color: "#fff",
+                                    border: "none",
+                                    borderRadius: "100px",
+                                    fontSize: "10px",
+                                    fontWeight: 700,
+                                    letterSpacing: "0.3em",
+                                    textTransform: "uppercase",
+                                    cursor: sub ? "not-allowed" : "pointer",
+                                    opacity: sub ? 0.5 : 1,
+                                    transition: "all 0.4s ease",
+                                    minWidth: "200px",
+                                }}
+                            >
+                                {sub ? "送信中..." : "送信する"}
+                            </button>
+                        </div>
+                    </form>
+                )}
             </div>
         </section>
     );
