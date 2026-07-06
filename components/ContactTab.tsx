@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail } from "lucide-react";
 
-export default function ContactTab() {
+export default function ContactTab({ locale = "ja" }: { locale?: "en" | "ja" }) {
     const [visible, setVisible] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -114,14 +114,16 @@ export default function ContactTab() {
                         }}>
                             INQUIRY
                         </span>
-                        <span className="label-jp" style={{
-                            fontFamily: "var(--font-serif)",
-                            fontSize: isMobile ? "12px" : "11px",
-                            letterSpacing: "0.2em",
-                            opacity: 0.65,
-                        }}>
-                            お問い合わせ
-                        </span>
+                        {locale !== "en" && (
+                            <span className="label-jp" style={{
+                                fontFamily: "var(--font-serif)",
+                                fontSize: isMobile ? "12px" : "11px",
+                                letterSpacing: "0.2em",
+                                opacity: 0.65,
+                            }}>
+                                お問い合わせ
+                            </span>
+                        )}
                     </div>
 
                     <style jsx>{`

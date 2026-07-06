@@ -3,28 +3,28 @@
 import Link from "next/link";
 import { Instagram } from "lucide-react";
 
-export default function Footer() {
+export default function Footer({ locale = "ja" }: { locale?: "en" | "ja" }) {
     const cols = [
         {
             title: "Menu",
             links: [
-                { n: "Gallery", h: "#gallery" },
-                { n: "Location", h: "#location" },
-                { n: "Plans", h: "#plan" },
+                { n: "Gallery", h: locale === "en" ? "/en#gallery" : "#gallery" },
+                { n: locale === "en" ? "Locations" : "Location", h: locale === "en" ? "/en#location" : "#location" },
+                { n: "Plans", h: locale === "en" ? "/en#plan" : "#plan" },
             ],
         },
         {
             title: "Info",
             links: [
-                { n: "Team", h: "#team" },
-                { n: "Flow", h: "#flow" },
-                { n: "FAQ", h: "#faq" },
+                { n: "Team", h: locale === "en" ? "/en#team" : "#team" },
+                { n: "Flow", h: locale === "en" ? "/en#flow" : "#flow" },
+                { n: "FAQ", h: locale === "en" ? "/en#faq" : "#faq" },
             ],
         },
         {
             title: "Contact",
             links: [
-                { n: "Inquiry Form", h: "#contact" },
+                { n: locale === "en" ? "Inquiry Form" : "Inquiry Form", h: locale === "en" ? "/en#contact" : "#contact" },
                 { n: "Instagram DM", h: "https://www.instagram.com/myokorokkei/", external: true },
             ],
         },
@@ -82,15 +82,26 @@ export default function Footer() {
                                 color: "rgba(255,255,255,0.4)",
                                 lineHeight: 2.2,
                                 fontFamily: "var(--font-serif)",
-                                maxWidth: "220px",
+                                maxWidth: "240px",
                                 marginBottom: "1.6rem",
                             }}
                         >
-                            山に抱かれ、空に解ける。
-                            <br />
-                            妙高の原風景とともに、
-                            <br />
-                            おふたりの歩みを記録します。
+                            {locale === "en" ? (
+                                <>
+                                    Embraced by mountains,<br />
+                                    released to the sky.<br />
+                                    Recording your journey<br />
+                                    with the landscapes of Myoko.
+                                </>
+                            ) : (
+                                <>
+                                    山に抱かれ、空に解ける。
+                                    <br />
+                                    妙高の原風景とともに、
+                                    <br />
+                                    おふたりの歩みを記録します。
+                                </>
+                            )}
                         </p>
                         <a
                             href="https://www.instagram.com/myokorokkei/"

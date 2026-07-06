@@ -14,6 +14,7 @@ export async function sendEmail(formData: FormData) {
     const email = formData.get('email') as string
     const message = formData.get('message') as string
     const hpField = formData.get('hp_field') as string
+    const lang = (formData.get('lang') as string) || 'ja'
 
     // Honeypot check: If this hidden field is filled, it's a bot
     if (hpField) {
@@ -54,9 +55,11 @@ export async function sendEmail(formData: FormData) {
         const adminEmail = await resend.emails.send({
             from: '妙高麓景 <noreply@myoko-rokkei.jp>',
             to: ['info@myoko-rokkei.jp'], 
-            subject: `【お問い合わせ】${name}様より`,
+            subject: lang === 'en' ? `[Inquiry] From ${name} (English)` : `【お問い合わせ】${name}様より`,
             reply_to: email,
-            text: `お名前: ${name}\nメールアドレス: ${email}\n\n内容:\n${message}`,
+            text: lang === 'en' 
+                ? `Name: ${name}\nEmail: ${email}\nLanguage: English\n\nContent:\n${message}`
+                : `お名前: ${name}\nメールアドレス: ${email}\n\n内容:\n${message}`,
         })
 
         if (adminEmail.error) {
@@ -65,11 +68,34 @@ export async function sendEmail(formData: FormData) {
         }
 
         // 2. Auto Response to User
-        const userEmail = await resend.emails.send({
-            from: '妙高麓景 <noreply@myoko-rokkei.jp>',
-            to: [email],
-            subject: '【妙高麓景】お問い合わせありがとうございます',
-            text: `${name} 様
+        const userEmailSubject = lang === 'en' 
+            ? '【Myoko Rokkei】Thank you for your inquiry' 
+            : '【妙高麓景】お問い合わせありがとうございます';
+        
+        const userEmailText = lang === 'en'
+            ? `Dear ${name},
+
+Thank you very much for contacting Myoko Rokkei Wedding Photo.
+
+We have received your inquiry with the following details.
+Our representative will review your message and contact you shortly.
+
+We appreciate your patience.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+■ Inquiry Details
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Myoko Rokkei
+https://myoko-rokkei.jp/en
+`
+            : `${name} 様
 
 この度は、ウェディングフォト「妙高麓景」へお問い合わせいただき、誠にありがとうございます。
 
@@ -90,7 +116,13 @@ ${message}
 
 妙高麓景｜Myoko Rokkei
 https://myoko-rokkei.jp/
-`,
+`;
+
+        const userEmail = await resend.emails.send({
+            from: '妙高麓景 <noreply@myoko-rokkei.jp>',
+            to: [email],
+            subject: userEmailSubject,
+            text: userEmailText,
         })
 
         return { success: true }

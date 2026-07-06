@@ -28,7 +28,7 @@ const labelStyle: React.CSSProperties = {
     marginBottom: "6px",
 };
 
-export default function Contact() {
+export default function Contact({ locale = "ja" }: { locale?: "en" | "ja" }) {
     const [sub, setSub] = useState(false);
 
     return (
@@ -38,9 +38,15 @@ export default function Contact() {
                 <div style={{ textAlign: "center", marginBottom: "3rem" }}>
                     <img src="/images/illus-contact.png" alt="" aria-hidden="true" style={{ width: "60px", display: "block", margin: "0 auto 0.8rem", mixBlendMode: "multiply" }} />
                     <span className="v-title-tag">Contact</span>
-                    <h2 className="v-section-title serif">お問い合わせ</h2>
+                    <h2 className="v-section-title serif">
+                        {locale === "en" ? "Contact Us" : "お問い合わせ"}
+                    </h2>
                     <p style={{ fontFamily: "var(--font-serif)", fontSize: "13px", opacity: 0.5, lineHeight: 2, marginTop: "1rem" }}>
-                        撮影のご予約・ご相談など、<br />お気軽にご連絡ください。
+                        {locale === "en" ? (
+                            <>Please feel free to contact us for reservations,<br />consultations, or any inquiries.</>
+                        ) : (
+                            <>撮影のご予約・ご相談など、<br />お気軽にご連絡ください。</>
+                        )}
                     </p>
                 </div>
 
@@ -75,8 +81,14 @@ export default function Contact() {
                     </div>
                     <div style={{ flex: 1 }}>
                         <p style={{ fontSize: "12px", fontFamily: "var(--font-serif)", opacity: 0.6, margin: 0, lineHeight: 1.7 }}>
-                            <span style={{ display: 'inline-block' }}>Instagramのメッセージからでも、</span>
-                            <span style={{ display: 'inline-block' }}>お気軽にお問い合わせください。</span>
+                            {locale === "en" ? (
+                                <span style={{ display: 'inline-block' }}>You can also reach out to us directly on Instagram message.</span>
+                            ) : (
+                                <>
+                                    <span style={{ display: 'inline-block' }}>Instagramのメッセージからでも、</span>
+                                    <span style={{ display: 'inline-block' }}>お気軽にお問い合わせください。</span>
+                                </>
+                            )}
                         </p>
                     </div>
                     <a
@@ -120,24 +132,34 @@ export default function Contact() {
                         const result = await sendEmail(formData);
                         
                         if (result.success) {
-                            window.location.href = "/thanks";
+                            window.location.href = locale === "en" ? "/en/thanks" : "/thanks";
                         } else {
-                            alert(`送信に失敗しました: ${result.error || "原因不明のエラー"}`);
+                            const errMessage = locale === "en" 
+                                ? `Failed to send: ${result.error || "Unknown error"}` 
+                                : `送信に失敗しました: ${result.error || "原因不明のエラー"}`;
+                            alert(errMessage);
                             setSub(false);
                         }
                     }}
                     style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}
                 >
+                    {/* Hidden Language Field */}
+                    <input type="hidden" name="lang" value={locale} />
+
                     <div>
-                        <label style={labelStyle}>Name · お名前</label>
-                        <input required name="name" type="text" placeholder="妙高 花子" style={inputStyle}
+                        <label style={labelStyle}>
+                            {locale === "en" ? "Name" : "Name · お名前"}
+                        </label>
+                        <input required name="name" type="text" placeholder={locale === "en" ? "Jane Doe" : "妙高 花子"} style={inputStyle}
                             onFocus={e => (e.currentTarget.style.borderColor = "rgba(18,26,22,0.3)")}
                             onBlur={e => (e.currentTarget.style.borderColor = "#ebebeb")}
                         />
                     </div>
 
                     <div>
-                        <label style={labelStyle}>Email · メールアドレス</label>
+                        <label style={labelStyle}>
+                            {locale === "en" ? "Email Address" : "Email · メールアドレス"}
+                        </label>
                         <input required name="email" type="email" placeholder="hello@example.com" style={inputStyle}
                             onFocus={e => (e.currentTarget.style.borderColor = "rgba(18,26,22,0.3)")}
                             onBlur={e => (e.currentTarget.style.borderColor = "#ebebeb")}
@@ -145,12 +167,14 @@ export default function Contact() {
                     </div>
 
                     <div>
-                        <label style={labelStyle}>Message · お問い合わせ内容</label>
+                        <label style={labelStyle}>
+                            {locale === "en" ? "Message" : "Message · お問い合わせ内容"}
+                        </label>
                         <textarea
                             name="message"
                             rows={5}
                             required
-                            placeholder="撮影日のご希望、ご質問などをお書きください。"
+                            placeholder={locale === "en" ? "Please write your preferred photoshoot date, questions, etc." : "撮影日のご希望、ご質問などをお書きください。"}
                             style={{
                                 ...inputStyle,
                                 borderRadius: "20px",
@@ -170,8 +194,17 @@ export default function Contact() {
                             lineHeight: 1.6,
                             letterSpacing: "0.05em"
                         }}>
-                            ご入力いただいた情報は、お問い合わせへの回答のみに使用し、<br />
-                            プライバシーポリシーに基づき大切に管理いたします。
+                            {locale === "en" ? (
+                                <>
+                                    The information you enter will only be used to respond to your inquiry<br />
+                                    and will be managed carefully in accordance with our privacy policy.
+                                </>
+                            ) : (
+                                <>
+                                    ご入力いただいた情報は、お問い合わせへの回答のみに使用し、<br />
+                                    プライバシーポリシーに基づき大切に管理いたします。
+                                </>
+                            )}
                         </p>
                         
                         {/* Honeypot Field */}
@@ -189,7 +222,7 @@ export default function Contact() {
                                 className="cf-turnstile" 
                                 data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "your-site-key"}
                                 data-theme="light"
-                                data-size="compact" // Changed to compact to reduce space
+                                data-size="compact"
                             ></div>
                         </div>
 
@@ -212,7 +245,7 @@ export default function Contact() {
                                 minWidth: "200px",
                             }}
                         >
-                            {sub ? "Sending..." : "Send Message"}
+                            {sub ? (locale === "en" ? "Sending..." : "送信中...") : (locale === "en" ? "Send Message" : "送信する")}
                         </button>
                     </div>
                 </form>

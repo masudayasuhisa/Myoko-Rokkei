@@ -1,32 +1,32 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import "./globals.css";
+import "../globals.css";
 
 export const metadata: Metadata = {
-    title: "妙高麓景 | Myoko Rokkei Wedding Photo - 妙高の大自然で叶えるウェディングフォト",
-    description: "妙高の豊かな自然を舞台にした、一生に一度のウェディングフォトプラン。クリエイティブチームが、この地の雄大な風景とおふたりの未来を重ね、特別な1日を優しく紡いでいきます。",
+    title: "Myoko Rokkei | Wedding Photo in the Majestic Nature of Myoko",
+    description: "A once-in-a-lifetime wedding photography experience set against the rich, natural landscapes of Myoko. Our creative team guides you through a special day, weaving your future with these scenic views.",
     alternates: {
-        canonical: "https://myoko-rokkei.jp",
+        canonical: "https://myoko-rokkei.jp/en",
     },
     openGraph: {
-        title: "妙高麓景 | Myoko Rokkei Wedding Photo",
-        description: "妙高の豊かな自然を舞台にした、一生に一度のウェディングフォトプラン。",
-        url: "https://myoko-rokkei.jp",
-        siteName: "妙高麓景",
+        title: "Myoko Rokkei | Wedding Photo",
+        description: "A once-in-a-lifetime wedding photography experience set against the rich, natural landscapes of Myoko.",
+        url: "https://myoko-rokkei.jp/en",
+        siteName: "Myoko Rokkei",
         images: [
             {
-                url: "https://myoko-rokkei.jp/images/mv-center.jpg", // Assuming this exists or is a good hero image
+                url: "https://myoko-rokkei.jp/images/mv-center.jpg",
                 width: 1200,
                 height: 630,
             },
         ],
-        locale: "ja_JP",
+        locale: "en_US",
         type: "website",
     },
     twitter: {
         card: "summary_large_image",
-        title: "妙高麓景 | Myoko Rokkei Wedding Photo",
-        description: "妙高の豊かな自然を舞台にした、一生に一度のウェディングフォトプラン。",
+        title: "Myoko Rokkei | Wedding Photo",
+        description: "A once-in-a-lifetime wedding photography experience set against the rich, natural landscapes of Myoko.",
         images: ["https://myoko-rokkei.jp/images/mv-center.jpg"],
     },
     icons: {
@@ -43,7 +43,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ja">
+        <html lang="en">
             <head>
                 {/* Google Analytics */}
                 <Script

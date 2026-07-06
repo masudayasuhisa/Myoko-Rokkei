@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Instagram, Menu, X } from "lucide-react";
 
-const NAV = [
+const NAV_JA = [
     { n: "Gallery", h: "#gallery" },
     { n: "Plans", h: "#plan" },
     { n: "Flow", h: "#flow" },
@@ -12,9 +12,18 @@ const NAV = [
     { n: "FAQ", h: "#faq" },
 ];
 
-export default function Header() {
+const NAV_EN = [
+    { n: "Gallery", h: "/en#gallery" },
+    { n: "Plans", h: "/en#plan" },
+    { n: "Flow", h: "/en#flow" },
+    { n: "Team", h: "/en#team" },
+    { n: "FAQ", h: "/en#faq" },
+];
+
+export default function Header({ locale = "ja" }: { locale?: "en" | "ja" }) {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
+    const NAV = locale === "en" ? NAV_EN : NAV_JA;
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 60);
@@ -50,7 +59,7 @@ export default function Header() {
                     style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}
                 >
                     {/* Logo — bird image + text */}
-                    <Link href="/" style={{ textDecoration: "none" }}>
+                    <Link href={locale === "en" ? "/en" : "/"} style={{ textDecoration: "none" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: "10px", transition: "opacity 0.4s ease" }}>
                             <img
                                 src="/images/logo-bird.png"
@@ -134,7 +143,7 @@ export default function Header() {
                         </a>
 
                         <a
-                            href="#contact"
+                            href={locale === "en" ? "/en#contact" : "#contact"}
                             style={{
                                 fontSize: "9px",
                                 fontWeight: 800,
@@ -160,8 +169,35 @@ export default function Header() {
                                 e.currentTarget.style.borderColor = scrolled ? "rgba(18,26,22,0.25)" : "rgba(255,255,255,0.5)";
                             }}
                         >
-                            Inquiry
+                            {locale === "en" ? "Inquiry" : "お問い合わせ"}
                         </a>
+
+                        <Link
+                            href={locale === "en" ? "/" : "/en"}
+                            style={{
+                                fontSize: "9px",
+                                fontWeight: 800,
+                                letterSpacing: "0.2em",
+                                textTransform: "uppercase",
+                                textDecoration: "none",
+                                color: navColor,
+                                border: scrolled ? "1px solid rgba(18,26,22,0.15)" : "1px solid rgba(255,255,255,0.3)",
+                                padding: "4px 10px",
+                                borderRadius: "4px",
+                                transition: "all 0.3s ease",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.color = navHover;
+                                e.currentTarget.style.borderColor = scrolled ? "rgba(18,26,22,0.4)" : "rgba(255,255,255,0.6)";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.color = navColor;
+                                e.currentTarget.style.borderColor = scrolled ? "rgba(18,26,22,0.15)" : "rgba(255,255,255,0.3)";
+                            }}
+                            className="nav-desktop-only"
+                        >
+                            {locale === "en" ? "日本語" : "EN"}
+                        </Link>
 
                         {/* Mobile hamburger */}
                         <button
@@ -318,7 +354,7 @@ export default function Header() {
                         </motion.a>
 
                         <motion.a
-                            href="#contact"
+                            href={locale === "en" ? "/en#contact" : "#contact"}
                             onClick={() => setMobileOpen(false)}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -338,7 +374,28 @@ export default function Header() {
                                 transition: "all 0.3s ease",
                             }}
                         >
-                            Inquiry
+                            {locale === "en" ? "Inquiry" : "お問い合わせ"}
+                        </motion.a>
+
+                        <motion.a
+                            href={locale === "en" ? "/" : "/en"}
+                            onClick={() => setMobileOpen(false)}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: NAV.length * 0.08 + 0.1, duration: 0.5 }}
+                            style={{
+                                fontFamily: "var(--font-serif)",
+                                fontSize: "1rem",
+                                color: "rgba(255,255,255,0.6)",
+                                textDecoration: "none",
+                                letterSpacing: "0.15em",
+                                marginTop: "1rem",
+                                border: "1px solid rgba(255,255,255,0.2)",
+                                padding: "6px 20px",
+                                borderRadius: "6px"
+                            }}
+                        >
+                            {locale === "en" ? "日本語" : "English"}
                         </motion.a>
                         <motion.div
                             initial={{ opacity: 0 }}

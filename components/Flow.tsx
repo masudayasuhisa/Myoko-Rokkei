@@ -1,8 +1,25 @@
+"use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, MessageCircle, Ruler, Camera, Image as ImageIcon } from "lucide-react";
 
-export default function Flow() {
+const steps_ja = [
+    { t: "Inquiry", j: "お問い合わせ", d: "WebフォームまたはInstagramのDMからお気軽にご連絡ください。担当者より折り返しご連絡いたします。", icon: Mail },
+    { t: "Consultation", j: "お打ち合わせ", d: "Zoomなどオンラインでも対応。プランの詳細や、帰省スケジュールに合わせた撮影日の調整を行います。", icon: MessageCircle },
+    { t: "Fitting", j: "お衣装選び", d: "撮影前にドレス・タキシードなどの衣装をお選びいただきます。お気に入りの一着が見つかるよう、スタッフが丁寧にご案内します。", icon: Ruler },
+    { t: "Shooting", j: "撮影当日", d: "妙高の雄大な自然を舞台に、リラックスした雰囲気で。おふたりの自然な表情を引き出します。", icon: Camera },
+    { t: "Delivery", j: "納品", d: "丁寧にレタッチしたデータ（1ヶ月以内）をダウンロード形式でお届けします。", icon: ImageIcon }
+];
+
+const steps_en = [
+    { t: "Inquiry", j: "Inquiry", d: "Please feel free to reach out to us via our web contact form or Instagram DM. Our team will get back to you shortly.", icon: Mail },
+    { t: "Consultation", j: "Consultation", d: "We offer consultations via Zoom or other online platforms. We will discuss plan details and tailor the photoshoot date to match your travel or home-return schedule.", icon: MessageCircle },
+    { t: "Fitting", j: "Attire Selection", d: "Select your wedding attire (such as dresses, suits, or traditional kimonos) ahead of the photoshoot. Our stylists will guide you to find the look that perfectly fits your style.", icon: Ruler },
+    { t: "Shooting", j: "Photoshoot Day", d: "Step into the magnificent nature of Myoko. In a relaxed, comfortable atmosphere, we capture your natural expressions and genuine smiles.", icon: Camera },
+    { t: "Delivery", j: "Delivery", d: "You will receive your carefully retouched, high-resolution photos via a digital download link within one month of your photoshoot.", icon: ImageIcon }
+];
+
+export default function Flow({ locale = "ja" }: { locale?: "en" | "ja" }) {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -12,13 +29,7 @@ export default function Flow() {
         return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
-    const steps = [
-        { t: "Inquiry", j: "お問い合わせ", d: "WebフォームまたはInstagramのDMからお気軽にご連絡ください。担当者より折り返しご連絡いたします。", icon: Mail },
-        { t: "Consultation", j: "お打ち合わせ", d: "Zoomなどオンラインでも対応。プランの詳細や、帰省スケジュールに合わせた撮影日の調整を行います。", icon: MessageCircle },
-        { t: "Fitting", j: "お衣装選び", d: "撮影前にドレス・タキシードなどの衣装をお選びいただきます。お気に入りの一着が見つかるよう、スタッフが丁寧にご案内します。", icon: Ruler },
-        { t: "Shooting", j: "撮影当日", d: "妙高の雄大な自然を舞台に、リラックスした雰囲気で。おふたりの自然な表情を引き出します。", icon: Camera },
-        { t: "Delivery", j: "納品", d: "丁寧にレタッチしたデータ（1ヶ月以内）をダウンロード形式でお届けします。", icon: ImageIcon }
-    ];
+    const steps = locale === "en" ? steps_en : steps_ja;
 
     return (
         <section id="flow" className="section-padding v-bg-paper">
@@ -27,7 +38,7 @@ export default function Flow() {
                     <img src="/images/illus-flow.png" alt="" aria-hidden="true" style={{ width: '60px', display: 'block', margin: '0 auto 0.8rem', mixBlendMode: 'multiply' }} />
                     <span className="v-title-tag">FLOW</span>
                     <h2 className="v-section-title serif mb-0">
-                        撮影までの流れ
+                        {locale === "en" ? "Steps to Photoshoot" : "撮影までの流れ"}
                     </h2>
                 </div>
 
@@ -77,8 +88,12 @@ export default function Flow() {
                                             </div>
                                             <div className={`flex flex-row items-baseline flex-1 gap-3 ${i % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
                                                 <h3 className="serif" style={{ fontSize: isMobile ? '1.05rem' : '1.2rem', color: "#121A16", margin: 0, lineHeight: 1.2 }}>{s.t}</h3>
-                                                <span className="serif opacity-20" style={{ fontSize: '0.9rem', transform: 'translateY(1px)' }}>/</span>
-                                                <h3 className="serif opacity-40" style={{ fontSize: isMobile ? '0.85rem' : '0.95rem', margin: 0, lineHeight: 1.2, transform: 'translateY(4px)' }}>{s.j}</h3>
+                                                {locale !== "en" && (
+                                                    <>
+                                                        <span className="serif opacity-20" style={{ fontSize: '0.9rem', transform: 'translateY(1px)' }}>/</span>
+                                                        <h3 className="serif opacity-40" style={{ fontSize: isMobile ? '0.85rem' : '0.95rem', margin: 0, lineHeight: 1.2, transform: 'translateY(4px)' }}>{s.j}</h3>
+                                                    </>
+                                                )}
                                             </div>
                                         </div>
 
@@ -105,10 +120,16 @@ export default function Flow() {
                     </div>
 
                     <div className="text-center" style={{ marginTop: '28px' }}>
-                        <p className="serif italic opacity-40" style={{ fontSize: '0.9rem' }}>
-                            <span className="inline-block">おふたりの想いに寄り添いながら、</span><br className="inline md:hidden" />
-                            <span className="inline-block">準備からお届けまで、</span>
-                            <span className="inline-block">丁寧に進めてまいります。</span>
+                        <p className="serif italic opacity-40" style={{ fontSize: '0.9rem', lineHeight: 2.0 }}>
+                            {locale === "en" ? (
+                                <span>From the initial planning to the final delivery, we stay close to your wishes to weave a day you will cherish forever.</span>
+                            ) : (
+                                <>
+                                    <span className="inline-block">おふたりの想いに寄り添いながら、</span><br className="inline md:hidden" />
+                                    <span className="inline-block">準備からお届けまで、</span>
+                                    <span className="inline-block">丁寧に進めてまいります。</span>
+                                </>
+                            )}
                         </p>
                     </div>
                 </div>

@@ -53,7 +53,7 @@ const MOBILE_IMAGES = [
 // --- Layout configuration ---
 const VERTICAL_LAYOUT = true; // Set to false to revert to horizontal layout
 
-export default function Hero() {
+export default function Hero({ locale = "ja" }: { locale?: "en" | "ja" }) {
     const [mounted, setMounted] = useState(false);
     const [pcIndex, setPcIndex] = useState(0);
     const [mobileIndex, setMobileIndex] = useState(0);
@@ -212,88 +212,154 @@ export default function Hero() {
                 initial="hidden"
                 animate="show"
             >
-                {VERTICAL_LAYOUT && !isMobile && (
+                {locale === "en" ? (
                     <motion.div
                         variants={fadeUp}
                         style={{
-                            position: "absolute",
-                            right: "100px",
-                            top: "20px", // Even closer to top
+                            maxWidth: isMobile ? "100%" : "600px",
+                            textAlign: isMobile ? "center" : "left",
                             display: "flex",
-                            flexDirection: "row-reverse",
-                            gap: "1.8rem", // Further reduce gap
-                        }}
-                    >
-                        <h1
-                            style={{
-                                fontFamily: "var(--font-serif)",
-                                color: "#fff",
-                                fontSize: "clamp(2.5rem, 5vw, 3.6rem)",
-                                writingMode: "vertical-rl",
-                                letterSpacing: "0.15em",
-                                lineHeight: 1.0,
-                                textShadow: "0 0 50px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
-                            }}
-                        >
-                            ふるさとの山に、
-                        </h1>
-                        <h1
-                            style={{
-                                fontFamily: "var(--font-serif)",
-                                color: "#fff",
-                                fontSize: "clamp(2.5rem, 5vw, 3.6rem)",
-                                writingMode: "vertical-rl",
-                                letterSpacing: "0.15em",
-                                lineHeight: 1.0,
-                                textShadow: "0 0 50px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
-                            }}
-                        >
-                            永遠を誓う。
-                        </h1>
-                    </motion.div>
-                )}
-
-                {VERTICAL_LAYOUT && isMobile && (
-                    <motion.div
-                        variants={fadeUp}
-                        style={{
-                            display: "flex",
-                            flexDirection: "row-reverse",
+                            flexDirection: "column",
+                            alignItems: isMobile ? "center" : "flex-start",
                             justifyContent: "center",
-                            gap: "1.2rem",
-                            position: "relative",
-                            marginTop: "20px",
-                            marginBottom: "auto",
                             zIndex: 20
                         }}
                     >
+                        <motion.span
+                            variants={fadeUp}
+                            style={{
+                                display: "block",
+                                fontFamily: "var(--font-serif)",
+                                fontSize: isMobile ? "11px" : "13px",
+                                fontWeight: 600,
+                                letterSpacing: "0.2em",
+                                color: "#fff",
+                                marginBottom: "20px",
+                                opacity: 0.9
+                            }}
+                        >
+                            Nature&apos;s Grandeur,<br />Your Everlasting Vow.
+                        </motion.span>
+
                         <h1
                             style={{
                                 fontFamily: "var(--font-serif)",
                                 color: "#fff",
-                                fontSize: "2.4rem",
-                                writingMode: "vertical-rl",
-                                letterSpacing: "0.2em",
+                                fontSize: isMobile ? "2rem" : "clamp(2.5rem, 5vw, 3.8rem)",
+                                letterSpacing: "0.08em",
                                 lineHeight: 1.4,
-                                textShadow: "0 0 30px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                                textShadow: "0 0 50px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                                fontWeight: 400,
+                                marginBottom: "30px"
                             }}
                         >
-                            ふるさとの山に、
+                            Vow Eternity to the<br />
+                            Mountains of Home.
                         </h1>
-                        <h1
+
+                        <motion.div
+                            variants={fadeUp}
                             style={{
-                                fontFamily: "var(--font-serif)",
-                                color: "#fff",
-                                fontSize: "2.4rem",
-                                writingMode: "vertical-rl",
-                                letterSpacing: "0.2em",
-                                lineHeight: 1.4,
-                                textShadow: "0 0 30px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                                fontSize: "10px",
+                                fontWeight: 800,
+                                letterSpacing: "0.45em",
+                                color: "rgba(255,255,255,0.7)",
+                                textTransform: "uppercase",
                             }}
                         >
-                            永遠を誓う。
-                        </h1>
+                            {isMobile ? (
+                                <>MYOKO ROKKEI<br />WEDDING PHOTO</>
+                            ) : (
+                                <>MYOKO ROKKEI | WEDDING PHOTO</>
+                            )}
+                        </motion.div>
                     </motion.div>
+                ) : (
+                    <>
+                        {VERTICAL_LAYOUT && !isMobile && (
+                            <motion.div
+                                variants={fadeUp}
+                                style={{
+                                    position: "absolute",
+                                    right: "100px",
+                                    top: "20px", // Even closer to top
+                                    display: "flex",
+                                    flexDirection: "row-reverse",
+                                    gap: "1.8rem", // Further reduce gap
+                                }}
+                            >
+                                <h1
+                                    style={{
+                                        fontFamily: "var(--font-serif)",
+                                        color: "#fff",
+                                        fontSize: "clamp(2.5rem, 5vw, 3.6rem)",
+                                        writingMode: "vertical-rl",
+                                        letterSpacing: "0.15em",
+                                        lineHeight: 1.0,
+                                        textShadow: "0 0 50px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                                    }}
+                                >
+                                    ふるさとの山に、
+                                </h1>
+                                <h1
+                                    style={{
+                                        fontFamily: "var(--font-serif)",
+                                        color: "#fff",
+                                        fontSize: "clamp(2.5rem, 5vw, 3.6rem)",
+                                        writingMode: "vertical-rl",
+                                        letterSpacing: "0.15em",
+                                        lineHeight: 1.0,
+                                        textShadow: "0 0 50px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                                    }}
+                                >
+                                    永遠を誓う。
+                                </h1>
+                            </motion.div>
+                        )}
+
+                        {VERTICAL_LAYOUT && isMobile && (
+                            <motion.div
+                                variants={fadeUp}
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "row-reverse",
+                                    justifyContent: "center",
+                                    gap: "1.2rem",
+                                    position: "relative",
+                                    marginTop: "20px",
+                                    marginBottom: "auto",
+                                    zIndex: 20
+                                }}
+                            >
+                                <h1
+                                    style={{
+                                        fontFamily: "var(--font-serif)",
+                                        color: "#fff",
+                                        fontSize: "2.4rem",
+                                        writingMode: "vertical-rl",
+                                        letterSpacing: "0.2em",
+                                        lineHeight: 1.4,
+                                        textShadow: "0 0 30px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                                    }}
+                                >
+                                    ふるさとの山に、
+                                </h1>
+                                <h1
+                                    style={{
+                                        fontFamily: "var(--font-serif)",
+                                        color: "#fff",
+                                        fontSize: "2.4rem",
+                                        writingMode: "vertical-rl",
+                                        letterSpacing: "0.2em",
+                                        lineHeight: 1.4,
+                                        textShadow: "0 0 30px rgba(255,255,255,0.4), 0 2px 20px rgba(0,0,0,0.4)",
+                                    }}
+                                >
+                                    永遠を誓う。
+                                </h1>
+                            </motion.div>
+                        )}
+                    </>
                 )}
 
                 {!VERTICAL_LAYOUT && (
@@ -346,7 +412,7 @@ export default function Hero() {
                     </>
                 )}
 
-                {VERTICAL_LAYOUT && (
+                {VERTICAL_LAYOUT && locale !== "en" && (
                     <div style={{ 
                         maxWidth: isMobile ? "100%" : "500px",
                         textAlign: isMobile ? "center" : "left"

@@ -30,7 +30,7 @@ const IMAGES = [
     "/images/top_pc/20250820_0298.jpg",
 ];
 
-export default function Gallery() {
+export default function Gallery({ locale = "ja" }: { locale?: "en" | "ja" }) {
     const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
     const prev = useCallback(() => {
@@ -60,7 +60,7 @@ export default function Gallery() {
                     <img src="/images/illus-bird.png" alt="" aria-hidden="true" style={{ width: "64px", display: "block", margin: "0 auto 0.8rem", mixBlendMode: "multiply" }} />
                     <span className="v-title-tag">Gallery</span>
                     <h2 className="v-section-title serif mb-0">
-                        フォトギャラリー
+                        {locale === "en" ? "Photo Gallery" : "フォトギャラリー"}
                     </h2>
                 </div>
 
