@@ -127,7 +127,7 @@ export default function Contact({ locale = "ja" }: { locale?: "en" | "ja" }) {
                 {locale === "en" ? (
                     <div style={{ textAlign: "center", marginTop: "1rem" }}>
                         <a
-                            href="https://wa.me/819063309143"
+                            href="https://wa.me/819022171597"
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{

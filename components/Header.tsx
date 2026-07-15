@@ -143,7 +143,7 @@ export default function Header({ locale = "ja" }: { locale?: "en" | "ja" }) {
                         </a>
 
                         <a
-                            href={locale === "en" ? "https://wa.me/819063309143" : "#contact"}
+                            href={locale === "en" ? "https://wa.me/819022171597" : "#contact"}
                             {...(locale === "en" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             style={{
                                 fontSize: "9px",
@@ -355,7 +355,7 @@ export default function Header({ locale = "ja" }: { locale?: "en" | "ja" }) {
                         </motion.a>
 
                         <motion.a
-                            href={locale === "en" ? "https://wa.me/819063309143" : "#contact"}
+                            href={locale === "en" ? "https://wa.me/819022171597" : "#contact"}
                             {...(locale === "en" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             onClick={() => setMobileOpen(false)}
                             initial={{ opacity: 0, y: 20 }}

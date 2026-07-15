@@ -25,7 +25,7 @@ export default function Footer({ locale = "ja" }: { locale?: "en" | "ja" }) {
             title: "Contact",
             links: [
                 locale === "en"
-                    ? { n: "WhatsApp", h: "https://wa.me/819063309143", external: true }
+                    ? { n: "WhatsApp", h: "https://wa.me/819022171597", external: true }
                     : { n: "Inquiry Form", h: "#contact" },
                 { n: "Instagram DM", h: "https://www.instagram.com/myokorokkei/", external: true },
             ],
